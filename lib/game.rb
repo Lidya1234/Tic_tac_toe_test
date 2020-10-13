@@ -104,6 +104,7 @@ end
   end
   def player_won(player)
     puts " winner #{player.player} :Congratulations "
+    player.player
   end
 
   def playgame
