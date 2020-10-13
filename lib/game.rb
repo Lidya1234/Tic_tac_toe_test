@@ -1,4 +1,5 @@
 # rubocop:disable Metrics/MethodLength
+require_relative '../lib/validate.rb'
 class Game
   WINNERS_SET = [
     [1, 2, 3],

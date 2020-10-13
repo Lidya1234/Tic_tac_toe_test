@@ -1,13 +1,13 @@
-require_relative ./lib/game.rb
-require_relative ./lib/player.rb
-require_relative ./bin/main.rb
+require ./lib/game.rb
+require ./lib/player.rb
+
 
 
     describe "game method tests" do
         let(:player1){Player.new('Lidu' , 'x')}
         let(:Player2){Player.new('Lidya' , 'y')}
         let(:game){Game.new(player1 ,player2)}
-        let(:validate){Validate.new(player1 , 'x' )}
+        
     it "validates if board is full" do 
         #puts Game.boardfull
         #expects(Game.boardfull).to be(false)
