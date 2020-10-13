@@ -1,5 +1,5 @@
 # rubocop:disable Metrics/MethodLength
-require_relative '../lib/validate.rb'
+
 class Game
   WINNERS_SET = [
     [1, 2, 3],
@@ -18,7 +18,7 @@ class Game
     @board = [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
     @filledpos_player1 = []
     @filledpos_player2 = []
-    @validate = Validator.new(@player, @sign)
+   
   end
 
   def game_board
@@ -30,10 +30,13 @@ class Game
   end
 
   def board_draw
-    @validate.draw_board
+    puts 'Game was a draw.'
     @board = [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
   end
-
+   def board_array(x)
+    return true if @board[x] == ' '
+    false
+   end
   def boardfull
     if @board.any? { |x| x == ' ' }
       false
@@ -41,37 +44,47 @@ class Game
       true
     end
   end
+ 
+def validchoice(choice)
+  return true if choice =~ /^-?[0-9]+$/
+      false
+end
 
   def move(turn)
     choicevalid = false
     choice = ' '
 
     player_turn = turn.odd? ? @player1 : @player2
-    @validate.choice(player_turn)
+    puts "#{player_turn.player} Enter your choice"
     loop do
-      choice = @validate.getchoice
-
-      if choice =~ /^-?[0-9]+$/
-        choicevalid = true
+      choice =  gets.chomp
+    choicevalid=validchoice(choice)
+      if choicevalid == true
         choice = choice.to_i
       end
       break if choicevalid == true
 
-      @validate.move(player_turn)
+      puts "#{player_turn.player} Invalid move"
     end
     choice
   end
-
+ def valid_pos(position)
+  return true if @board[position. - 1] == ' '
+  false
+ end
+ def fill_board(position,sign)
+  @board[position - 1] = sign
+ end
   def movement(position, sign, turn)
     player_turn = turn.odd? ? @player1 : @player2
     loop do
       system 'cls'
-      if @board[position - 1] == ' '
-
-        @board[position - 1] = sign
+      if valid_pos(position)
+        fill_board(position ,sign)
+        
         break
       else
-        @validate.position(player_turn)
+        puts "#{player_turn.player} Invalid position"
         position = move(turn)
       end
     end
@@ -88,6 +101,9 @@ class Game
 
     end
     false
+  end
+  def player_won(player)
+    puts " winner #{player.player} :Congratulations "
   end
 
   def playgame
@@ -114,7 +130,8 @@ class Game
       if won == true
 
         game_board
-        @validate.won(player)
+        player_won(player)
+    
         break
       else
         draw = true
