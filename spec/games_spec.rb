@@ -42,7 +42,7 @@ end
      expect(game.valid_pos(8)).to eql(game.board_array(8))
 
  end
-
+ describe 'check winner' do
  it 'Vertical' do
     game.fill_board(2,'x')
     game.fill_board(5 ,'x')
@@ -81,3 +81,21 @@ it 'Horizontal' do
      game.fill_board(9 ,'y')
      expect(game.winner).to eql('Lidya')
  end
+
+ it 'Diagonal' do 
+    game.fill_board(3,'x')
+    game.fill_board(5 ,'x')
+    game.fill_board(7 ,'x')
+    expect(game.winner).to eql('Lidu')
+end
+it 'Diagonal' do 
+    game.fill_board(1,'y')
+    game.fill_board(5 ,'y')
+    game.fill_board(9 ,'y')
+    expect(game.winner).not_to eql('Lidu')
+end
+
+end
+
+  
+end
