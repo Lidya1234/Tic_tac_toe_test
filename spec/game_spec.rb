@@ -41,9 +41,10 @@ end
 
 describe 'check winner' do
     it 'Vertical' do 
-        game.fill_board(1,'x')
-        game.fill_board(4 ,'x')
-        game.fill_board(7 ,'x')
+        game.fill_board(2,'x')
+        game.fill_board(5 ,'x')
+        game.fill_board(8 ,'x')
+     
         expect(game.winner).to eql('Lidu')
     end
     it 'Vertical' do 
@@ -86,19 +87,10 @@ describe 'check winner' do
         game.fill_board(1,'y')
         game.fill_board(5 ,'y')
         game.fill_board(9 ,'y')
-        expect(game.winner).to eql('Lidu')
+        expect(game.winner).not_to eql('Lidu')
     end
    
 end
 
-    # it 'validates position between 1 to 9' do
-    #          expects(validate.position(10)).to eql(false) 
-    #      end
   
-    it 'board print' do
-         game.game_board
-    end
-    it 'board printbbbbb' do
-        game.game_board
-   end
 end

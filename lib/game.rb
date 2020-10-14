@@ -43,6 +43,7 @@ class Game
       false
     else
       true
+
     end
   end
  
@@ -76,6 +77,13 @@ end
  def fill_board(position,sign)
   @board[position - 1] = sign
  end
+ def fill_board(pos ,sign)
+  if sign == 'x'
+  @filledpos_player1 << pos
+  elsif sign == 'y'
+    @filledpos_player2 << pos
+  end
+ end
   def movement(position, sign, turn)
     player_turn = turn.odd? ? @player1 : @player2
     loop do
@@ -91,20 +99,27 @@ end
     end
   end
 
-  def winner
-    if @winner == @player1
-      WINNERS_SET.detect{|set| if  @board[set[0]] == @board[set[1]] && @board[set[1]] && @board[set[2]] && @board[set[0]] == x }
-        
-      WINNERS_SET.each { |x| return @player1.player if x & @filledpos_player1 == x }
-     
-    else
 
-      WINNERS_SET.each { |x| return @player2.player if x & @filledpos_player2 == x }
-    
-      
+  def winner
+  
+    if wonplay1
+
+      return @player1.player 
+     elsif wonplay2
+      return @player2.player
+     else
+       nil
+      end
     end
-    nil
-  end
+      def wonplay1
+        WINNERS_SET.each { |x| return true if x & @filledpos_player1 == x }
+        false
+      end
+      def wonplay2
+        WINNERS_SET.each { |x| return true if x & @filledpos_player2 == x }
+        false
+      end
+    
   def player_won(x)
     
     puts " winner #{player.player} :Congratulations "
