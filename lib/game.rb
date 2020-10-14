@@ -34,12 +34,6 @@ class Game
     @board = [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
   end
 
-  def board_array(x)
-    return true if @board[x] == ' '
-
-    false
-  end
-
   def boardfull
     if @board.any? { |x| x == ' ' }
       false
@@ -64,9 +58,7 @@ class Game
     loop do
       choice = gets.chomp
       choicevalid = validchoice(choice)
-      if choicevalid == true
-        choice = choice.to_i
-      end
+      choice = choice.to_i if choicevalid == true
       break if choicevalid == true
 
       puts "#{player_turn.player} Invalid move"
@@ -80,7 +72,7 @@ class Game
     false
   end
 
-  def fill_board(position, sign)
+  def filled_board(position, sign)
     @board[position - 1] = sign
   end
 
@@ -97,7 +89,7 @@ class Game
     loop do
       system 'cls'
       if valid_pos(position)
-        fill_board(position, sign)
+        filled_board(position, sign)
 
         break
       else
@@ -110,11 +102,9 @@ class Game
   def winner
     if wonplay1
 
-      return @player1.player
+      @player1.player
     elsif wonplay2
-      return @player2.player
-    else
-      nil
+      @player2.player
     end
   end
 
@@ -128,14 +118,9 @@ class Game
     false
   end
 
-  def player_won(x)
-    puts " winner #{player.player} :Congratulations "
-    player.player
-  end
-
   def playgame
     turn = 1
-    won = nil
+
     until boardfull
       draw = false
       choice = move(turn)
@@ -154,7 +139,7 @@ class Game
       end
       won = winner
 
-      if won != nil
+      if !won.nil?
 
         game_board
 
