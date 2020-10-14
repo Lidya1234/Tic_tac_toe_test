@@ -18,6 +18,7 @@ class Game
     @board = [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
     @filledpos_player1 = []
     @filledpos_player2 = []
+    @winner = nil
    
   end
 
@@ -90,26 +91,29 @@ end
     end
   end
 
-  def winner(winner)
-    if winner == @player1
-
-      WINNERS_SET.each { |x| return true if x & @filledpos_player1 == x }
-
+  def winner
+    if @winner == @player1
+      WINNERS_SET.detect{|set| if  @board[set[0]] == @board[set[1]] && @board[set[1]] && @board[set[2]] && @board[set[0]] == x }
+        
+      WINNERS_SET.each { |x| return @player1.player if x & @filledpos_player1 == x }
+     
     else
 
-      WINNERS_SET.each { |x| return true if x & @filledpos_player2 == x }
-
+      WINNERS_SET.each { |x| return @player2.player if x & @filledpos_player2 == x }
+    
+      
     end
-    false
+    nil
   end
-  def player_won(player)
+  def player_won(x)
+    
     puts " winner #{player.player} :Congratulations "
     player.player
   end
 
   def playgame
     turn = 1
-
+   won = nil
     until boardfull
       draw = false
       choice = move(turn)
@@ -117,22 +121,23 @@ end
 
         movement(choice, @player1.sign, turn)
         @filledpos_player1 << choice
-        player = @player1
+        @winner = @player1
 
       else
 
         movement(choice, @player2.sign, turn)
         @filledpos_player2 << choice
-        player = @player2
+        @winner = @player2
 
       end
-      won = winner(player)
+      won = winner
 
-      if won == true
+      if won !=nil
 
         game_board
-        player_won(player)
-    
+      
+        puts " winner #{@winner.player} :Congratulations "
+        @winner.player
         break
       else
         draw = true
@@ -140,8 +145,11 @@ end
 
       turn += 1
       game_board
+      @winner =nil
+      won =nil
     end
     board_draw if draw == true
+    nil
   end
 end
 # rubocop:enable Metrics/MethodLength

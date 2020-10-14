@@ -38,62 +38,59 @@ it 'Validates position' do
     expect(game.valid_pos(8)).to eql(game.board_array(8))
 
 end
+
 describe 'check winner' do
     it 'Vertical' do 
         game.fill_board(1,'x')
         game.fill_board(4 ,'x')
         game.fill_board(7 ,'x')
-        expect(player_won).to eql(Lidu)
+        expect(game.winner).to eql('Lidu')
     end
     it 'Vertical' do 
         game.fill_board(2,'x')
         game.fill_board(5 ,'x')
         game.fill_board(8 ,'x')
-        expect(player_won).to eql(Lidu)
+        expect(game.winner).to eql('Lidu')
     end
     it 'Vertical' do 
         game.fill_board(3,'x')
         game.fill_board(6 ,'x')
         game.fill_board(9 ,'x')
-        expect(player_won).to eql(Lidu)
+        expect(game.winner).to eql('Lidu')
     end
-    it 'Vertical' do 
-        game.fill_board(1,'x')
-        game.fill_board(4 ,'x')
+    it 'Horizontal' do 
+        game.fill_board(1,'y')
+        game.fill_board(2 ,'y')
+        game.fill_board(3 ,'y')
+        expect(game.winner).not_to eql('Lidu')
+    end
+    it 'Horizontal' do 
+        game.fill_board(4,'x')
+        game.fill_board(5 ,'x')
+        game.fill_board(6 ,'x')
+        expect(game.winner).not_to eql('Lidya')
+    end
+    it 'Horizontal' do 
+        game.fill_board(7 ,'y')
+        game.fill_board(8 ,'y')
+        game.fill_board(9 ,'y')
+        expect(game.winner).to eql('Lidya')
+    end
+    it 'Diagonal' do 
+        game.fill_board(3,'x')
+        game.fill_board(5 ,'x')
         game.fill_board(7 ,'x')
-        expect(player_won).to eql(Lidu)
+        expect(game.winner).to eql('Lidu')
     end
-    it 'Vertical' do 
-        game.fill_board(2,'x')
-        game.fill_board(5 ,'x')
-        game.fill_board(8 ,'x')
-        expect(player_won).to eql(Lidu)
+    it 'Diagonal' do 
+        game.fill_board(1,'y')
+        game.fill_board(5 ,'y')
+        game.fill_board(9 ,'y')
+        expect(game.winner).to eql('Lidu')
     end
-    it 'Vertical' do 
-        game.fill_board(3,'x')
-        game.fill_board(6 ,'x')
-        game.fill_board(9 ,'x')
-        expect(player_won).to eql(Lidu)
-    end
-    it 'Vertical' do 
-        game.fill_board(1,'x')
-        game.fill_board(4 ,'x')
-        game.fill_board(7 ,'x')
-        expect(player_won).to eql(Lidu)
-    end
-    it 'Vertical' do 
-        game.fill_board(2,'x')
-        game.fill_board(5 ,'x')
-        game.fill_board(8 ,'x')
-        expect(player_won).to eql(Lidu)
-    end
-    it 'Vertical' do 
-        game.fill_board(3,'x')
-        game.fill_board(6 ,'x')
-        game.fill_board(9 ,'x')
-        expect(player_won).to eql(Lidu)
-    end
+   
 end
+
     # it 'validates position between 1 to 9' do
     #          expects(validate.position(10)).to eql(false) 
     #      end
