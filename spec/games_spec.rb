@@ -43,22 +43,41 @@ end
 
  end
 
- it 'Vertical' do 
+ it 'Vertical' do
     game.fill_board(2,'x')
     game.fill_board(5 ,'x')
     game.fill_board(8 ,'x')
- 
+
     expect(game.winner).to eql('Lidu')
 end
-it 'Vertical' do 
+it 'Vertical' do
     game.fill_board(2,'x')
     game.fill_board(5 ,'x')
     game.fill_board(8 ,'x')
     expect(game.winner).to eql('Lidu')
 end
-it 'Vertical' do 
+it 'Vertical' do
     game.fill_board(3,'x')
     game.fill_board(6 ,'x')
     game.fill_board(9 ,'x')
     expect(game.winner).to eql('Lidu')
 end
+
+it 'Horizontal' do
+     game.fill_board(1,'y')
+     game.fill_board(2 ,'y')
+     game.fill_board(3 ,'y')
+     expect(game.winner).not_to eql('adewunmi')
+ end
+ it 'Horizontal' do
+     game.fill_board(4,'x')
+     game.fill_board(5 ,'x')
+     game.fill_board(6 ,'x')
+     expect(game.winner).not_to eql('adewunmi')
+ end
+ it 'Horizontal' do
+     game.fill_board(7 ,'y')
+     game.fill_board(8 ,'y')
+     game.fill_board(9 ,'y')
+     expect(game.winner).to eql('Lidya')
+ end
