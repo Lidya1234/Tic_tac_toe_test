@@ -100,20 +100,20 @@ class Game
   end
 
   def winner
-    if wonplay1
+    if winplay1
 
       @player1.player
-    elsif wonplay2
+    elsif winplay2
       @player2.player
     end
   end
 
-  def wonplay1
+  def winplay1
     WINNERS_SET.each { |x| return true if x & @filledpos_player1 == x }
     false
   end
 
-  def wonplay2
+  def winplay2
     WINNERS_SET.each { |x| return true if x & @filledpos_player2 == x }
     false
   end
