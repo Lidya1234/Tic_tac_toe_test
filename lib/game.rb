@@ -34,12 +34,6 @@ class Game
     @board = [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
   end
 
-  def board_array(x)
-    return true if @board[x] == ' '
-
-    false
-  end
-
   def boardfull
     if @board.any? { |x| x == ' ' }
       false
@@ -78,7 +72,7 @@ class Game
     false
   end
 
-  def fill_board(position, sign)
+  def filled_board(position, sign)
     @board[position - 1] = sign
   end
 
@@ -95,7 +89,7 @@ class Game
     loop do
       system 'cls'
       if valid_pos(position)
-        fill_board(position, sign)
+        filled_board(position, sign)
 
         break
       else
@@ -124,14 +118,17 @@ class Game
     false
   end
 
+<<<<<<< HEAD
   def player_won(_x)
     puts " winner #{player.player} :Congratulations "
     player.player
   end
 
+=======
+>>>>>>> 464c23e1694458d062735463f6b1f74032414ec6
   def playgame
     turn = 1
-    won = nil
+
     until boardfull
       draw = false
       choice = move(turn)
