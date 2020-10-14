@@ -42,3 +42,23 @@ end
      expect(game.valid_pos(8)).to eql(game.board_array(8))
 
  end
+
+ it 'Vertical' do 
+    game.fill_board(2,'x')
+    game.fill_board(5 ,'x')
+    game.fill_board(8 ,'x')
+ 
+    expect(game.winner).to eql('Lidu')
+end
+it 'Vertical' do 
+    game.fill_board(2,'x')
+    game.fill_board(5 ,'x')
+    game.fill_board(8 ,'x')
+    expect(game.winner).to eql('Lidu')
+end
+it 'Vertical' do 
+    game.fill_board(3,'x')
+    game.fill_board(6 ,'x')
+    game.fill_board(9 ,'x')
+    expect(game.winner).to eql('Lidu')
+end
