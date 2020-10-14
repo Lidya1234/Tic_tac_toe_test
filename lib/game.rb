@@ -118,14 +118,6 @@ class Game
     false
   end
 
-<<<<<<< HEAD
-  def player_won(_x)
-    puts " winner #{player.player} :Congratulations "
-    player.player
-  end
-
-=======
->>>>>>> 464c23e1694458d062735463f6b1f74032414ec6
   def playgame
     turn = 1
 
