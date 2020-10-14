@@ -19,7 +19,6 @@ class Game
     @filledpos_player1 = []
     @filledpos_player2 = []
     @winner = nil
-   
   end
 
   def game_board
@@ -34,10 +33,13 @@ class Game
     puts 'Game was a draw.'
     @board = [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
   end
-   def board_array(x)
+
+  def board_array(x)
     return true if @board[x] == ' '
+
     false
-   end
+  end
+
   def boardfull
     if @board.any? { |x| x == ' ' }
       false
@@ -46,11 +48,12 @@ class Game
 
     end
   end
- 
-def validchoice(choice)
-  return true if choice =~ /^-?[0-9]+$/
-      false
-end
+
+  def validchoice(choice)
+    return true if choice =~ /^-?[0-9]+$/
+
+    false
+  end
 
   def move(turn)
     choicevalid = false
@@ -59,8 +62,8 @@ end
     player_turn = turn.odd? ? @player1 : @player2
     puts "#{player_turn.player} Enter your choice"
     loop do
-      choice =  gets.chomp
-    choicevalid=validchoice(choice)
+      choice = gets.chomp
+      choicevalid = validchoice(choice)
       if choicevalid == true
         choice = choice.to_i
       end
@@ -70,27 +73,32 @@ end
     end
     choice
   end
- def valid_pos(position)
-  return true if @board[position. - 1] == ' '
-  false
- end
- def fill_board(position,sign)
-  @board[position - 1] = sign
- end
- def fill_board(pos ,sign)
-  if sign == 'x'
-  @filledpos_player1 << pos
-  elsif sign == 'y'
-    @filledpos_player2 << pos
+
+  def valid_pos(position)
+    return true if @board[position. - 1] == ' '
+
+    false
   end
- end
+
+  def fill_board(position, sign)
+    @board[position - 1] = sign
+  end
+
+  def fill_board(pos, sign)
+    if sign == 'x'
+      @filledpos_player1 << pos
+    elsif sign == 'y'
+      @filledpos_player2 << pos
+    end
+  end
+
   def movement(position, sign, turn)
     player_turn = turn.odd? ? @player1 : @player2
     loop do
       system 'cls'
       if valid_pos(position)
-        fill_board(position ,sign)
-        
+        fill_board(position, sign)
+
         break
       else
         puts "#{player_turn.player} Invalid position"
@@ -99,36 +107,35 @@ end
     end
   end
 
-
   def winner
-  
     if wonplay1
 
-      return @player1.player 
-     elsif wonplay2
+      return @player1.player
+    elsif wonplay2
       return @player2.player
-     else
-       nil
-      end
+    else
+      nil
     end
-      def wonplay1
-        WINNERS_SET.each { |x| return true if x & @filledpos_player1 == x }
-        false
-      end
-      def wonplay2
-        WINNERS_SET.each { |x| return true if x & @filledpos_player2 == x }
-        false
-      end
-    
+  end
+
+  def wonplay1
+    WINNERS_SET.each { |x| return true if x & @filledpos_player1 == x }
+    false
+  end
+
+  def wonplay2
+    WINNERS_SET.each { |x| return true if x & @filledpos_player2 == x }
+    false
+  end
+
   def player_won(x)
-    
     puts " winner #{player.player} :Congratulations "
     player.player
   end
 
   def playgame
     turn = 1
-   won = nil
+    won = nil
     until boardfull
       draw = false
       choice = move(turn)
@@ -147,10 +154,10 @@ end
       end
       won = winner
 
-      if won !=nil
+      if won != nil
 
         game_board
-      
+
         puts " winner #{@winner.player} :Congratulations "
         @winner.player
         break
@@ -160,8 +167,8 @@ end
 
       turn += 1
       game_board
-      @winner =nil
-      won =nil
+      @winner = nil
+      won = nil
     end
     board_draw if draw == true
     nil

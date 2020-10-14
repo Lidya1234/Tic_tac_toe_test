@@ -24,7 +24,7 @@ player1 = Player.new(player1name, sign1)
 puts "#{player1name}'s symbol #{sign1}"
 puts 'Enter name of second player'
 player2name = getplayesrs
-valid =validate.validplayer(player2name,player1name)
+valid = validate.validplayer(player2name, player1name)
 
 if valid == false
   puts 'Already taken:Enter a different name'
