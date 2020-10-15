@@ -7,11 +7,11 @@ describe 'game method tests' do
   let(:player2) { Player.new('Lidya', 'y') }
   let(:game) { Game.new(player1, player2) }
   let(:validate) { Validator.new('lidu') }
-  #validates name
+  # validates name
   it 'It checks if the name is at least one character long' do
     expect(validate.validname('letter_d')).to be(true)
   end
-  #validates name
+  # validates name
   it 'It checks if the name is at least one character long' do
     expect(validate.validname('')).not_to eql(true)
   end
@@ -86,7 +86,5 @@ describe 'game method tests' do
       game.fill_board(9, 'y')
       expect(game.winner).not_to eql('Lidu')
     end
-
-end
-
+  end
 end

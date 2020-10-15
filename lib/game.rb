@@ -20,7 +20,7 @@ class Game
     @filledpos_player2 = []
     @winner = nil
   end
- 
+
   def game_board
     puts "#{@board[0]} | #{@board[1]}| #{@board[2]}"
     puts puts '__|__|__'
@@ -28,7 +28,7 @@ class Game
     puts puts '__|__|__'
     puts "#{@board[6]} | #{@board[7]}| #{@board[8]}"
   end
-  
+
   def fill_board(pos, sign)
     if sign == 'x'
       @filledpos_player1 << pos
@@ -36,11 +36,14 @@ class Game
       @filledpos_player2 << pos
     end
   end
-  def board_array(x)
-    return true if @board[x] == ' '
+
+  def board_array(position)
+    return true if @board[position] == ' '
+
     false
-   end
-   def winner
+  end
+
+  def winner
     if winplay1
 
       @player1.player
@@ -48,11 +51,13 @@ class Game
       @player2.player
     end
   end
+
   def validchoice(choice)
     return true if choice =~ /^-?[0-9]+$/
 
     false
   end
+
   def valid_pos(position)
     return true if @board[position. - 1] == ' '
 
@@ -99,14 +104,14 @@ class Game
     board_draw if draw == true
     nil
   end
-private
+
+  private
+
   def board_draw
     puts 'Game was a draw.'
     @board = [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
   end
 
-  
-private
   def boardfull
     if @board.any? { |x| x == ' ' }
       false
@@ -116,8 +121,6 @@ private
     end
   end
 
-  
-private
   def move(turn)
     choicevalid = false
     choice = ' '
@@ -135,13 +138,10 @@ private
     choice
   end
 
- 
-private
   def filled_board(position, sign)
     @board[position - 1] = sign
   end
 
-private
   def movement(position, sign, turn)
     player_turn = turn.odd? ? @player1 : @player2
     loop do
@@ -157,18 +157,14 @@ private
     end
   end
 
-  
-private
   def winplay1
     WINNERS_SET.each { |x| return true if x & @filledpos_player1 == x }
     false
   end
-private
+
   def winplay2
     WINNERS_SET.each { |x| return true if x & @filledpos_player2 == x }
     false
   end
-
-  
 end
 # rubocop:enable Metrics/MethodLength
